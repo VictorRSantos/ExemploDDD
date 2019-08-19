@@ -10,8 +10,10 @@ namespace ExemploDDD.ApplicationServices
 
     //Essa classe é a parte do projeto que resolve as instâncias, interage com diversas camadas e serve como primeiro ponto
     //de conexão das interfaces de usuário.
-    public class ClienteApp : IClienteRepository
+    public class ClienteApp : IClienteApp
     {
+
+
         IClienteRepository clienteRepository;
         //Construtor
         public ClienteApp(IClienteRepository cliRepository)
@@ -19,8 +21,7 @@ namespace ExemploDDD.ApplicationServices
             this.clienteRepository = cliRepository;
 
         }
-
-
+        
         public void Alterar(Cliente cli)
         {
             

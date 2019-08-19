@@ -11,15 +11,20 @@ namespace EmpresaDDD.UI.Web.Controllers
 {
     public class ClienteController : Controller
     {
+        IClienteApp clienteApp;
+        public ClienteController(IClienteApp clienteAppObj)
+        {
+            this.clienteApp = clienteAppObj;
+
+        }
+
+
         // Lista de Cliente
         public ActionResult Index()
         {
-            var cliRepo = new ClienteRepository();
-            var cliApp = new ClienteApp(cliRepo);
+            
 
-            var lista = cliApp.Listar();
-
-
+            var lista = clienteApp.Listar();
             return View(lista);
         }
     }
