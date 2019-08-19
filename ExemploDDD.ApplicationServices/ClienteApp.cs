@@ -7,6 +7,9 @@ using ExemploDDD.Domain;
 
 namespace ExemploDDD.ApplicationServices
 {
+
+    //Essa classe é a parte do projeto que resolve as instâncias, interage com diversas camadas e serve como primeiro ponto
+    //de conexão das interfaces de usuário.
     public class ClienteApp : IClienteRepository
     {
         IClienteRepository clienteRepository;
@@ -36,12 +39,12 @@ namespace ExemploDDD.ApplicationServices
 
         public List<Cliente> Listar()
         {
-            throw new NotImplementedException();
+            return clienteRepository.Listar();
         }
 
         public Cliente ObterPorId(string ID)
         {
-            throw new NotImplementedException();
+            return clienteRepository.ObterPorId(ID);
         }
     }
 }
