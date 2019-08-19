@@ -17,15 +17,38 @@ namespace EmpresaDDD.UI.Web.Controllers
             this.clienteApp = clienteAppObj;
 
         }
-
-
+        
         // Lista de Cliente
         public ActionResult Index()
-        {
-            
+        {           
 
             var lista = clienteApp.Listar();
             return View(lista);
         }
+
+
+        public ActionResult Create()
+        {
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult Create(Cliente cli)
+        {
+
+            cli.Id = Guid.NewGuid().ToString();
+            clienteApp.Incluir(cli);
+
+
+            return RedirectToAction("Index");
+
+        }
+
+
+
+
+
     }
 }

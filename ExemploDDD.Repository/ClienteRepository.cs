@@ -4,38 +4,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExemploDDD.Domain;
+using Dapper;
+using System.Data.SqlClient;
+using System.Data.Common;
+using System.Data;
 
 namespace ExemploDDD.Repository
 {
     public class ClienteRepository : IClienteRepository
     {
-        public void Alterar(Cliente cli)
+
+
+       
+        public ClienteRepository()
         {
-            throw new NotImplementedException();
+                     
+
         }
 
-        public void Excluir(string ID)
+
+        public void Alterar(Cliente cli)
         {
-            throw new NotImplementedException();
+
+            DbHelper.Execute("ClienteAlterar", cli);
+        }
+
+        public void Excluir(string id)
+        {
+
+            DbHelper.Execute("ClienteExcluir", new { id = id} );
+
         }
 
         public void Incluir(Cliente cli)
         {
-            throw new NotImplementedException();
+
+
+            DbHelper.Execute("ClienteIncluir", cli);
+
         }
 
         public List<Cliente> Listar()
         {
-            var lista = new List<Cliente>();
-            lista.Add(new Cliente() { Id = "1", Nome = "Jose" });
-            lista.Add(new Cliente() { Id = "2", Nome = "Maria" });
-            return lista;
+            return DbHelper.Query<Cliente>("ClienteListar", null);
 
         }
 
-        public Cliente ObterPorId(string ID)
+        public Cliente ObterPorId(string id)
         {
-            throw new NotImplementedException();
+            return DbHelper.QueryFirstOrDefault<Cliente>("ClienteObterPorId", new { id });
         }
     }
 }
