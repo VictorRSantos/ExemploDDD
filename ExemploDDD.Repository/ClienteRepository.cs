@@ -25,8 +25,8 @@ namespace ExemploDDD.Repository
 
         public void Alterar(Cliente cli)
         {
-
-            DbHelper.Execute("ClienteAlterar", cli);
+            
+           DbHelper.Execute("ClienteAlterar", cli);
         }
 
         public void Excluir(string id)
@@ -46,7 +46,13 @@ namespace ExemploDDD.Repository
 
         public List<Cliente> Listar()
         {
-            return DbHelper.Query<Cliente>("ClienteListar", null);
+
+            string sql = @"SELECT * FROM Cliente";                    
+
+            return DbHelper.Query<Cliente>(sql, null); 
+            
+            //Dapper com procedure
+            //DbHelper.Query<Cliente>("ClienteListar", null);
 
         }
 

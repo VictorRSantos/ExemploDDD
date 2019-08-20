@@ -35,7 +35,13 @@ namespace ExemploDDD.Repository
         {
             using (var db = obterConexao())
             {
-                return db.Query<T>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                //Dapper para consultar as procedure
+                //return db.Query<T>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+                var sqlConsulta = db.Query<T>(sql).ToList();
+
+                return sqlConsulta;
+
             }
         }
 
